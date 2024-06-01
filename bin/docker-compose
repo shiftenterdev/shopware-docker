@@ -6,7 +6,7 @@ else
   DOCKER_COMPOSE="docker-compose"
 fi
 
-COMPOSE_FILES=("docker-compose.yaml")
+COMPOSE_FILES=("compose.yaml")
 
 # Loop over the list of compose files, and prefix them with -f.
 # This ensures paths with spaces aren't split when passed as parameters.
