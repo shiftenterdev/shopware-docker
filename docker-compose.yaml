@@ -1,0 +1,74 @@
+services:
+    nginx:
+        image: nginx:latest
+        container_name: shopware-nginx
+        ports:
+            - "8000:80"
+        volumes:
+            - ./images/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./images/nginx/conf.d:/etc/nginx/conf.d
+            - ./src:/app
+        depends_on:
+            - php
+        networks:
+            - shopware-net
+
+    php:
+        build: ./images/php/8.2
+        container_name: shopware-app
+        volumes:
+            - ./src:/app
+            - ./images/php/8.2/php.ini:/usr/local/etc/php/php.ini
+        networks:
+            - shopware-net
+
+    mysql:
+        image: mysql:8
+        container_name: shopware-db
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: shopware
+            MYSQL_USER: shopware
+            MYSQL_PASSWORD: shopware
+        volumes:
+            - mysql_data:/var/lib/mysql
+        networks:
+            - shopware-net
+
+#    opensearch:
+#        image: opensearchproject/opensearch:2.5.0
+#        container_name: shopware-opensearch
+#        environment:
+#            - discovery.type=single-node
+#            - plugins.security.disabled=true
+#        ports:
+#            - "9200:9200"
+#            - "9600:9600"
+#        networks:
+#            - shopware-net
+#        volumes:
+#            - opensearch_data:/usr/share/opensearch/data
+
+    redis:
+        image: redis:latest
+        container_name: shopware-redis
+        networks:
+            - shopware-net
+
+    mailhog:
+        image: mailhog/mailhog
+        container_name: shopware-email
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        networks:
+            - shopware-net
+
+volumes:
+    mysql_data:
+#    opensearch_data:
+
+networks:
+    shopware-net:
+        driver: bridge
+        name: shopware-net
