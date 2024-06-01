@@ -8,11 +8,12 @@ git clone https://github.com/shiftenterdev/shopware-docker.git
 
 cd shopware-docker
 
-# Install Shopware
+# Install Shopware application
 composer create-project shopware/production:6.5.8.9 src --ignore-platform-reqs
 
-# Build Docker
-bin/rebuild
+# Or clone your existing Shopware application
+git clone https://github.com/shopware/production.git src
+bin/composer install
 
 # Start Docker
 bin/start
