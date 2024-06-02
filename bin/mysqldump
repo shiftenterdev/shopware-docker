@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# shellcheck source=../env/db.env
+source env/db.env
+if [ -t 0 ]; then
+  # Need tty to run mysql shell
+  bin/docker-compose exec mysql mysqldump -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" "${MYSQL_DATABASE}" --no-tablespaces "$@"
+else
+  # Read from stdin, ex: bin/mysql < dbdump.sql
+  bin/docker-compose exec mysql mysqldump -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" "${MYSQL_DATABASE}" --no-tablespaces "$@"
+fi
