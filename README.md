@@ -1,4 +1,4 @@
-# Shopware Docker
+# Shopware Docker **Experimental
 ### Based on `https://github.com/markshust/docker-magento`
 
 __Installation:__
