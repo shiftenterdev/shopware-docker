@@ -33,12 +33,14 @@ __Available Command:__
 | `bin/start`        | Start containers                    |
 | `bin/stop`         | Stop containers                     |
 | `bin/console`      | Run shopware `bin/console` commands |
+| `bin/download`     | Download shopware repository        |
 | `bin/restart`      | Restart all containers              |
 | `bin/rebuild`      | Rebuild and recreate the containers |
 | `bin/removeall`    | Remove all containers and volumes   |
 | `bin/bash`         | Go to container bash                |
 | `bin/docker-stats` | Docker container statistics         |
 | `bin/composer`     | Run composer command                |
+| `bin/xdebug`       | Run xdebug command                  |
 
 
 __Create Certificate:__
