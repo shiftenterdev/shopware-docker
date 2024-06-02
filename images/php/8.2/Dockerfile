@@ -7,6 +7,10 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libzip-dev \
     libicu-dev \
+    libmcrypt-dev \
+    default-mysql-client \
+    gzip \
+    cron \
     zip \
     unzip \
     git \
@@ -14,6 +18,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) intl \
     && docker-php-ext-install -j$(nproc) pdo_mysql \
+    && docker-php-ext-install -j$(nproc) gettext \
+    && docker-php-ext-install -j$(nproc) mysqli \
     && docker-php-ext-install -j$(nproc) zip \
     && docker-php-ext-install opcache \
     && pecl install xdebug \
