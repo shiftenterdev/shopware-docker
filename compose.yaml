@@ -11,11 +11,11 @@ services:
             - ./images/certs:/etc/nginx/certs
             - ./src:/app
         depends_on:
-            - php
+            - app
         networks:
             - shopware-net
 
-    php:
+    app:
         build: ./images/php/8.2
         container_name: shopware-app
         volumes:
