@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.1-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -7,6 +7,10 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libzip-dev \
     libicu-dev \
+    libmcrypt-dev \
+    default-mysql-client \
+    gzip \
+    cron \
     zip \
     unzip \
     git \
@@ -14,6 +18,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) intl \
     && docker-php-ext-install -j$(nproc) pdo_mysql \
+    && docker-php-ext-install -j$(nproc) gettext \
+    && docker-php-ext-install -j$(nproc) mysqli \
     && docker-php-ext-install -j$(nproc) zip \
     && docker-php-ext-install opcache \
     && pecl install xdebug \
@@ -21,6 +27,10 @@ RUN apt-get update && apt-get install -y \
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Install Node.js 18
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
 
 # Copy custom php.ini settings
 COPY php.ini /usr/local/etc/php/php.ini
