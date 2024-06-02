@@ -57,12 +57,11 @@ services:
         networks:
             - shopware-net
 
-    mailhog:
-        image: mailhog/mailhog
-        container_name: shopware-email
+    mailcatcher:
+        image: sj26/mailcatcher
+        container_name: shopware-mail
         ports:
-            - "1025:1025"
-            - "8025:8025"
+            - "1080:1080"
         networks:
             - shopware-net
 
