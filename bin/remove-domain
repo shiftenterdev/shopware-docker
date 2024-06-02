@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -o errexit
+
+[ -z "$1" ] && echo "Please specify a domain name (ex. shopware.site)" && exit
+
+DOMAIN=$1
+
+# Check if the domain exists in /etc/hosts
+if grep -q "$DOMAIN" /etc/hosts; then
+    echo "Your system password is needed to add an entry to /etc/hosts..."
+    echo "$DOMAIN found in /etc/hosts. Removing..."
+    # Remove the line containing the domain
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        sudo sed -i '' "/$DOMAIN/d" /etc/hosts
+    else
+        # Linux and other Unix-like systems
+        sudo sed -i "/$DOMAIN/d" /etc/hosts
+    fi
+    echo "$DOMAIN has been removed from /etc/hosts."
+else
+    echo "$DOMAIN not found in /etc/hosts."
+fi
