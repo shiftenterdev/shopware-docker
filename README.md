@@ -28,19 +28,23 @@ bin/restart
 
 __Available Command:__
 
-| Command            | Task                                |
-|--------------------|-------------------------------------|
-| `bin/start`        | Start containers                    |
-| `bin/stop`         | Stop containers                     |
-| `bin/console`      | Run shopware `bin/console` commands |
-| `bin/download`     | Download shopware repository        |
-| `bin/restart`      | Restart all containers              |
-| `bin/rebuild`      | Rebuild and recreate the containers |
-| `bin/removeall`    | Remove all containers and volumes   |
-| `bin/bash`         | Go to container bash                |
-| `bin/docker-stats` | Docker container statistics         |
-| `bin/composer`     | Run composer command                |
-| `bin/xdebug`       | Run xdebug command                  |
+| Command             | Task                                             |
+|---------------------|--------------------------------------------------|
+| `bin/start`         | Start containers                                 |
+| `bin/stop`          | Stop containers                                  |
+| `bin/console`       | Run shopware `bin/console` commands              |
+| `bin/download`      | Download shopware repository                     |
+| `bin/restart`       | Restart all containers                           |
+| `bin/rebuild`       | Rebuild and recreate the containers              |
+| `bin/removeall`     | Remove all containers and volumes                |
+| `bin/bash`          | Go to container bash                             |
+| `bin/npm`           | Run npm command                                  |
+| `bin/node`          | Run node command                                 |
+| `bin/docker-stats`  | Docker container statistics                      |
+| `bin/composer`      | Run composer command                             |
+| `bin/xdebug`        | Run xdebug command                               |
+| `bin/setup-domain`  | Add domain for local development in `/etc/hosts` |
+| `bin/remove-domain` | Remove domain                                    |
 
 
 __Create Certificate:__
